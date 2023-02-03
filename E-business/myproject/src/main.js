@@ -18,3 +18,15 @@ new Vue({
     router,
     render: h => h(App)
 }).$mount('#app')
+
+Vue.filter('dateFormat', function(date) {
+    const inputDate = new Date(date);
+    const year = (inputDate.getFullYear());
+    const month = (inputDate.getMonth() + 1 + '').padStart(2, '0');
+    const day = (inputDate.getDate() + '').padStart(2, '0');
+
+    const hour = (inputDate.getHours() + '').padStart(2, '0');
+    const min = (inputDate.getMinutes() + '').padStart(2, '0');
+
+    return `${year}/${month}/${day} ${hour}:${min}`;
+})

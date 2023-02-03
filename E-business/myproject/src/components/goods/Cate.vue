@@ -86,6 +86,7 @@
         </el-dialog>
     </div>
 </template>
+
 <script>
 export default {
     name: 'Cate',
@@ -280,6 +281,7 @@ export default {
     },
 }
 </script>
+
 <style scoped>
 .el-card {
     margin-top: 30px;

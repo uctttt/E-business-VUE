@@ -11,7 +11,7 @@
                 <el-col :span="2">请选择商品分类：</el-col>
                 <el-col :span="6">
                     <el-cascader v-model="selectKeys" :options="typeList" :props="paramsProps"
-                        @change="handleChange"></el-cascader>
+                        @change="handleChange"/>
                 </el-col>
             </el-row>
             <el-tabs v-model="activeName" @tab-click="changeActive">
@@ -138,13 +138,15 @@ export default {
     data() {
         return {
             activeName: 'many',
+            
+            selectKeys: [],
+            typeList: [],
             paramsProps: {
                 label: 'cat_name',
                 value: 'cat_id',
                 children: 'children',
             },
-            selectKeys: [],
-            typeList: [],
+
             manyList: [],
             onlyList: [],
             catID: '',

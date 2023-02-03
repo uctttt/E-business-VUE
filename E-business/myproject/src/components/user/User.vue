@@ -36,11 +36,9 @@
                     </template>
                 </el-table-column>
             </el-table>
-            <div class="demo-pagination-block">
-                <el-pagination v-model:current-page="currentPage" :page-size="5" :page-sizes="[5, 8, 12]"
-                    layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange" />
-            </div>
+            <el-pagination v-model:current-page="currentPage" :page-size="5" :page-sizes="[5, 8, 12]"
+                layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
+                @current-change="handleCurrentChange" />
         </el-card>
 
         <el-dialog :visible.sync="addUserdialogVisible" title="添加用户" width="75%" center :show-close="false"
@@ -129,6 +127,9 @@ export default {
     name: 'User',
     data() {
         const checkEmail = (rule, value, callback) => {
+            if (!value) {
+                callback()
+            }
             if (value) {
                 if (value.indexOf('@') === -1) {
                     return callback(new Error('请输入正确邮箱地址'))
@@ -136,13 +137,18 @@ export default {
                 callback()
             }
         };
+        
         const checkMobile = (rule, value, callback) => {
+            if (!value) {
+                callback()
+            }
             let reg = /^1[3456789]\d{9}$/
             if (reg.test(value)) {
                 callback()
             } else
                 return callback(new Error('请输入正确电话号码'))
         };
+
         return {
             userList: [],
             currentPage: 1,
